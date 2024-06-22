@@ -1,0 +1,88 @@
+*today.txt*  Quick access to daily notes
+
+==============================================================================
+CONTENTS                                                        *today-contents*
+
+    1. Introduction ................ |today-introduction|
+    2. Installation ................ |today-installation|
+    3. Configuration ............... |today-configuration|
+    4. Usage ....................... |today-usage|
+    5. Commands .................... |today-commands|
+    6. Mappings .................... |today-mappings|
+
+==============================================================================
+1. INTRODUCTION                                             *today-introduction*
+
+Today.nvim is a Neovim plugin for quick access to daily notes. It allows you
+to easily open and manage daily markdown files, supporting both current and
+past dates.
+
+==============================================================================
+2. INSTALLATION                                             *today-installation*
+
+Using packer.nvim:
+>
+    use {
+      'vvoruganti/today.nvim',
+      config = function()
+        require('today').setup()
+      end
+    }
+
+Using lazy.nvim:
+>
+    {
+      'vvoruganti/today.nvim',
+      config = function()
+        require('today').setup()
+      end
+    }
+
+Using vim-plug:
+>
+    Plug 'vvoruganti/today.nvim'
+
+    " In your init.vim or init.lua, after loading plugins:
+    lua require('today').setup()
+
+==============================================================================
+3. CONFIGURATION                                           *today-configuration*
+
+Today.nvim works out of the box, but can be customized:
+>
+    require('today').setup({
+      local_root = "/path/to/your/notes",  -- Default: ~/.today
+      template = "custom_template.md"      -- Default: jrnl.md
+    })
+
+==============================================================================
+4. USAGE                                                           *today-usage*
+
+After installation, you can use the :Today command to open notes.
+
+See |today-commands| for more details.
+
+==============================================================================
+5. COMMANDS                                                     *today-commands*
+
+:Today                      Open today's note
+:Today [count]              Open the note from [count] days ago
+
+Examples:
+    :Today      " Opens today's note
+    :Today 5    " Opens the note from 5 days ago
+
+==============================================================================
+6. MAPPINGS                                                     *today-mappings*
+
+Today.nvim doesn't set any mappings by default. You can create your own:
+>
+    vim.keymap.set("n", "<leader>t", ":Today<CR>", 
+                   { noremap = true, silent = true, desc = "Open today's note" })
+
+With this mapping:
+    <leader>t   " Opens today's note
+    5<leader>t  " Opens the note from 5 days ago
+
+==============================================================================
+vim:ft=help:et:ts=2:sw=2:sts=2:norl
