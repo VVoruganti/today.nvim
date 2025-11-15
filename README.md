@@ -76,6 +76,27 @@ If no custom local_root is specified:
 * Uses a default jrnl.md template
 * Organizes notes in a daily/YYYY/MM/YYYY-MM-DD.md structure
 
+### Template placeholders
+
+Templates support dynamic date and time placeholders. Use `{{%...}}` with the
+desired format string and it will be replaced when a note is created.
+
+```markdown
+# Journal for {{%YYYY-mm-dd}}
+Created at {{%HH:%M}} ({{%A}})
+```
+
+Common patterns are translated to their `strftime` equivalents. The following
+named shortcuts are also provided:
+
+* `{{%DATE}}` → `2024-03-14`
+* `{{%TIME}}` → `21:45`
+* `{{%DATETIME}}` → `2024-03-14 21:45`
+
+For minutes and other advanced tokens you can still embed `strftime` specifiers,
+e.g. `{{%HH:%M}}`. Any unknown pattern is left untouched so templates remain
+readable.
+
 ## LICENSE
 
 MIT
@@ -83,4 +104,3 @@ MIT
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
-

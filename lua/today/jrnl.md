@@ -1,4 +1,4 @@
-# Date
+# {{%DATE}}
 
 ## To do
 

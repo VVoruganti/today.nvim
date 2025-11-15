@@ -9,6 +9,7 @@ CONTENTS                                                        *today-contents*
     4. Usage ....................... |today-usage|
     5. Commands .................... |today-commands|
     6. Mappings .................... |today-mappings|
+    7. Templates ................... |today-templates|
 
 ==============================================================================
 1. INTRODUCTION                                             *today-introduction*
@@ -85,4 +86,23 @@ With this mapping:
     5<leader>t  " Opens the note from 5 days ago
 
 ==============================================================================
+
+7. TEMPLATES                                                   *today-templates*
+Templates may contain placeholders of the form `{{%...}}`. When a new note is
+created each placeholder is expanded against the target date.
+Example:
+>
+    # Journal for {{%YYYY-mm-dd}}
+    Started at {{%HH:%M}} on {{%A}}
+The plugin understands common tokens like `YYYY`, `MM`, `DD`, `HH`, and `mm`
+and translates them to the appropriate |strftime()| directives. Named helpers
+are also available:
+    `{{%DATE}}`      →  `YYYY-MM-DD`
+    `{{%TIME}}`      →  `HH:MM`
+    `{{%DATETIME}}`  →  `YYYY-MM-DD HH:MM`
+You can mix in raw |strftime()| directives if you need something more specific:
+for example `{{%HH:%M}}` keeps the `%M` minute specifier untouched. Unrecognised
+patterns are left as-is so templates stay readable.
+==============================================================================
+
 vim:ft=help:et:ts=2:sw=2:sts=2:norl
